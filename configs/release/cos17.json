@@ -69,9 +69,9 @@
     "kernelSource": {
       "device": "ruby",
       "vendor": "xiaomi",
-      "name": "MoonWake-COS17-KSU",
+      "name": "MoonWake-COS17-SukiSU",
       "defconfig": "ruby_defconfig",
-      "extraConfig": "vendor/bbr.config vendor/noop.config vendor/kernelsu.config vendor/susfs.config vendor/cos17.config",
+      "extraConfig": "vendor/bbr.config vendor/noop.config vendor/sukisu.config vendor/cos17.config",
       "repo": "https://github.com/Abdulbasidi/moonwake_kernel_xiaomi_ruby",
       "branch": "cos17"
     },
@@ -84,8 +84,8 @@
     },
     "kernelsu": {
       "enable": true,
-      "setupLink": "https://raw.githubusercontent.com/DPR-MoonWake/KernelSU-Unified/refs/heads/susfs/kernel/setup.sh",
-      "setupArg": "susfs",
+      "setupLink": "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh",
+      "setupArg": "v4.3.0",
       "setupName": "KernelSU",
       "needPatch": false,
       "susfsLink": ""
