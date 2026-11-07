@@ -18,8 +18,8 @@
                },
         "kernelsu":  {
                          "enable":  true,
-                         "setupLink":  "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh",
-                         "setupArg":  "v4.3.0",
+                         "setupLink":  "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/v3.2.0/kernel/setup.sh",
+                         "setupArg":  "v3.2.0",
                          "setupName":  "KernelSU",
                          "needPatch":  false,
                          "susfsLink":  ""
