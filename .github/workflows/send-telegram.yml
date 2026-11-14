@@ -53,6 +53,6 @@ jobs:
             -F document=@"$FILE" \
             -F chat_id="$CHAT_ID" \
             -F parse_mode=HTML \
-            -F caption="$CAPTION" \
+            --form-string caption="$CAPTION" \
             "https://api.telegram.org/bot${BOT_TOKEN}/sendDocument" | tee /tmp/tg.json
           grep -q '"ok":true' /tmp/tg.json
