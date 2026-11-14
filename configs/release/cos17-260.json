@@ -7,7 +7,7 @@
             "defconfig": "ruby_defconfig",
             "extraConfig": "vendor/bbr.config vendor/noop.config vendor/kernelpatch.config vendor/kernelsu.config vendor/cos17.config",
             "repo": "https://github.com/Abdulbasidi/moonwake_kernel_xiaomi_ruby",
-            "branch": "cos17-260"
+            "branch": "cos17-exp"
         },
         "output_image": "Image.gz-dtb",
         "additional_script_link": "disabled",
@@ -19,7 +19,7 @@
         "kernelsu": {
             "enable": true,
             "setupLink": "https://raw.githubusercontent.com/DXRN-MoonWake/KernelAction/refs/heads/main/scripts/kernelsu_setups/ksun.sh",
-            "setupArg": "f110cddc07e27b21ad77c6c31261660efb25dce4",
+            "setupArg": "v3.4.0-legacy-susfs-v2",
             "setupName": "KernelSU-Next",
             "needPatch": false,
             "susfsLink": ""
