@@ -1,0 +1,58 @@
+name: "Send file to Telegram"
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Direct download URL"
+        required: true
+        type: string
+      filename:
+        description: "Filename to upload"
+        required: true
+        type: string
+      caption:
+        description: "HTML caption (optional)"
+        required: false
+        default: ""
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download file
+        env:
+          URL: ${{ github.event.inputs.url }}
+          FILE: ${{ github.event.inputs.filename }}
+        run: |
+          set -euo pipefail
+          curl -sSL --fail --retry 3 -o "$FILE" "$URL"
+          ls -l "$FILE"
+          sha256sum "$FILE"
+
+      - name: Send document
+        env:
+          BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          FILE: ${{ github.event.inputs.filename }}
+          CAPTION: ${{ github.event.inputs.caption }}
+        run: |
+          set -euo pipefail
+          if [ -z "${BOT_TOKEN:-}" ] || [ -z "${CHAT_ID:-}" ]; then
+            echo "::error::TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID secrets are not set"
+            exit 1
+          fi
+          if [ -z "${CAPTION:-}" ]; then
+            CAPTION="<b>${FILE}</b>"
+          fi
+          curl -sS --fail \
+            -F document=@"$FILE" \
+            -F chat_id="$CHAT_ID" \
+            -F parse_mode=HTML \
+            -F caption="$CAPTION" \
+            "https://api.telegram.org/bot${BOT_TOKEN}/sendDocument" | tee /tmp/tg.json
+          grep -q '"ok":true' /tmp/tg.json
